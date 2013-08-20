@@ -437,20 +437,20 @@ function! s:TreeFileNode._renderToString(depth, drawText, vertMap, isLastChild)
         if self.path.isDirectory
             if self.isOpen
                 if g:NERDTreeDirArrows
-                    let treeParts = treeParts . '▾ '
+                    let treeParts = treeParts . ' 📂  '
                 else
                     let treeParts = treeParts . '~'
                 endif
             else
                 if g:NERDTreeDirArrows
-                    let treeParts = treeParts . '▸ '
+                    let treeParts = treeParts . ' 📁  '
                 else
                     let treeParts = treeParts . '+'
                 endif
             endif
         else
             if g:NERDTreeDirArrows
-                let treeParts = treeParts . '  '
+                let treeParts = treeParts . ' 📄  '
             else
                 let treeParts = treeParts . '-'
             endif

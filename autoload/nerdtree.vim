@@ -295,7 +295,7 @@ endfunction
 "FUNCTION: nerdtree#treeMarkupReg(dir) {{{2
 function! nerdtree#treeMarkupReg()
     if g:NERDTreeDirArrows
-        return '^\([▾▸] \| \+[▾▸] \| \+\)'
+        return '^\( \+[📂📁]  \| \+📄 \+\)'
     endif
 
     return '^[ `|]*[\-+~]'
@@ -656,11 +656,11 @@ endfunction
 
 "FUNCTION: nerdtree#indentLevelFor(line) {{{2
 function! nerdtree#indentLevelFor(line)
-    let level = match(a:line, '[^ \-+~▸▾`|]') / nerdtree#treeWid()
+    let level = match(a:line, '[^ \-+~📁📂📄`|]') / nerdtree#treeWid()
     " check if line includes arrows
-    if match(a:line, '[▸▾]') > -1
+    if match(a:line, '[📁📂📄]') > -1
         " decrement level as arrow uses 3 ascii chars
-        let level = level - 1
+        let level = level - 2
     endif
     return level
 endfunction
@@ -1131,7 +1131,7 @@ function! s:handleLeftClick()
         endfor
 
         if currentNode.path.isDirectory
-            if startToCur =~# nerdtree#treeMarkupReg() && startToCur =~# '[+~▾▸] \?$'
+            if startToCur =~# nerdtree#treeMarkupReg() && startToCur =~# '[+~📂📁]  \?$'
                 call currentNode.activate()
                 return
             endif
